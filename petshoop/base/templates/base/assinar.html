@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assine o Plano</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #faf8f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-info {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilizando o formulário */
+        .text-center {
+            margin-bottom: 30px;
+        }
+
+        form input[type="image"] {
+            max-width: 200px;
+            margin-top: 20px;
+        }
+
+        /* Botão Mercado Pago */
+        .mercado-pago-btn {
+            display: inline-block;
+            background-color: #00A859;
+            padding: 14px 30px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .mercado-pago-btn:hover {
+            background-color: #007A46;
+        }
+
+        /* Estilo do botão PayPal */
+        .paypal-btn {
+            display: inline-block;
+            background-color: #ffcc00;
+            padding: 14px 30px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .paypal-btn:hover {
+            background-color: #f0a500;
+        }
+
+        /* Espacamento geral */
+        section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ajustando a largura para responsividade */
+        @media (max-width: 768px) {
+            .mercado-pago-btn, .paypal-btn {
+                width: 100%;
+                padding: 14px 20px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <section id="Assinatura">
+            <h2 class="text-center mb-4 fw-bold">Assine o Plano: {{ tipo }}</h2>
+            <p class="text-center text-muted mb-5">
+                Selecione o método de pagamento para o plano <strong>{{ tipo }}</strong>.
+            </p>
+
+            <!-- Botão Mercado Pago para pagamento com cartão -->
+            <div class="text-center">
+                <form action="https://www.mercadopago.com.br/developers/panel" method="get" target="_blank">
+                    <input type="hidden" name="preference-id" value="{{ plano.mercado_pago_preference_id }}">
+                    <button type="submit" class="mercado-pago-btn">
+                        <i class="fas fa-credit-card"></i> Pagar com Cartão de Crédito (Mercado Pago)
+                    </button>
+                </form>
+            </div>
+            <div class="text-center mt-4">
+                <a href="{% url 'base:home' %}" class="btn btn-secondary">Voltar para a página inicial</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

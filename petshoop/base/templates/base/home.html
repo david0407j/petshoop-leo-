@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="PetShop Leo - O melhor lugar para o seu pet!" />
+        <meta name="author" content="PetShop Leo" />
+        <title>PetShop Leo</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'img/shop.ico' %}" />
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Estilo Personalizado -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+        <!-- AOS (Animate on Scroll) -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .pet-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .pet-image:hover {
+            transform: scale(1.05);
+        }
+        .modal-img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="{% url 'base:home' %}">PetShop Leo</a>
+            <img src="{% static 'img/shop.ico' %}" alt="PetShop leo " style="max-height: 50px; object-fit: contain;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="{% url 'base:home' %}">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'base:plano' %}#Serviços">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-dark py-5">
+        <div class="container px-5">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-5 fw-bold text-white mb-3" data-aos="fade-up">
+                        Cuidamos do seu pet com amor e dedicação!
+                    </h1>
+                    <p class="lead text-white-50 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        No <strong>PetShop Leo</strong>, oferecemos os melhores serviços e produtos para garantir a 
+                        saúde e o bem-estar do seu amigo de quatro patas. Venha conhecer tudo o que temos para ele!
+                    </p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'base:plano' %}#Serviços" data-aos="zoom-in">
+                            Conheça nossos serviços
+                        </a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="https://calendly.com/djunio239/30min" data-aos="zoom-in" data-aos-delay="200">
+                            Agende um horário
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Seção de Fotos de Cachorros -->
+    <section class="py-5 bg-light">
+        <div class="container px-5">
+            <h2 class="text-center mb-4" data-aos="fade-up">Nossos Amigos de Quatro Patas</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-right">
+                    <img src="{% static 'img/fotos.jpg' %}" class="img-fluid pet-image shadow" alt="Cachorro 1" onclick="openModal(this)">
+                </div>
+                <div class="col-md-4" data-aos="fade-up">
+                    <img src="{% static 'img/leo .jpg' %}" class="img-fluid pet-image shadow" alt="Cachorro 2" onclick="openModal(this)">
+                </div>
+                <div class="col-md-4" data-aos="fade-left">
+                    <img src="{% static 'img/fot.jpg' %}" class="img-fluid pet-image shadow" alt="Cachorro 3" onclick="openModal(this)">
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        body {
+    background-color: #FFFFFF; /* Branco */
+    color: #333333; /* Cinza escuro para o texto */
+}
+
+.navbar {
+    background-color: #FFCC00 !important; /* Amarelo vibrante */
+}
+
+.navbar-brand, .nav-link {
+    color: #0a0a0ae6 !important; /* Branco */
+}
+
+.btn-primary {
+    background-color: #FFCC00; /* Amarelo vibrante */
+    border-color: #FFCC00; /* Amarelo vibrante */
+}
+
+.btn-primary:hover {
+    background-color: #FFD700; /* Amarelo dourado */
+    border-color: #FFD700; /* Amarelo dourado */
+}
+
+.pet-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.pet-image:hover {
+    transform: scale(1.05);
+}
+
+.modal-img {
+    width: 100%;
+}
+
+footer {
+    background-color: #FFCC00; /* Amarelo vibrante */
+    color: #FFFFFF; /* Branco */
+}
+
+    </style>
+
+    <!-- Modal para ampliar imagem -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img id="modalImg" class="modal-img" src="" alt="Imagem Ampliada">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        function openModal(imgElement) {
+            document.getElementById('modalImg').src = imgElement.src;
+            var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            imageModal.show();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block body %} {% endblock body %}
+
+    {% include 'base/footer.html' with contato_email='viralatagrafite@gmail.com' only %}
+</body>
+</html>

@@ -1,0 +1,38 @@
+name: Django CI
+
+on:
+  push:
+    branches: ["pet"]
+  pull_request:
+    branches: ["pet"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: 3.11
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Instalar dependências
+        run: |
+          pip install poetry
+          poetry install
+
+      - name: Aplicar migrações do banco de dados
+        run: poetry run python manage.py migrate
+
+      - name: Rodar flake8 (Análise de código)
+        run: poetry run flake8
+
+      - name: Executar testes
+        run: poetry run pytest
